@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:serverpod/serverpod.dart';
 
 class DashboardEndpoint extends Endpoint {
-  static const _tables = {'company'};
+  static const _tables = {'company', 'employee'};
   static const _maxRows = 5000;
 
   /// Up to 5000 rows of [table] as JSON: `{"rows": [...], "more": true}`
