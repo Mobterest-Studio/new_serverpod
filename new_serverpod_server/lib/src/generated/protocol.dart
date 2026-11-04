@@ -18,8 +18,10 @@ import 'package:serverpod_auth_core_server/serverpod_auth_core_server.dart'
 import 'package:serverpod_auth_idp_server/serverpod_auth_idp_server.dart'
     as _iais;
 import 'company.dart' as _i6pnc270;
+import 'employee.dart' as _ito2n1o6;
 import 'greetings/greeting.dart' as _izw8z7ou;
 export 'company.dart';
+export 'employee.dart';
 export 'greetings/greeting.dart';
 
 class Protocol extends _is.DatabaseSerializationManager {
@@ -42,6 +44,30 @@ class Protocol extends _is.DatabaseSerializationManager {
           isNullable: false,
           dartType: 'UuidValue?',
           columnDefault: 'random_v7',
+        ),
+        _isp.ColumnDefinition(
+          name: 'name',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+      ],
+      foreignKeys: [],
+      indexes: [],
+      managed: true,
+    ),
+    _isp.TableDefinition(
+      name: 'employee',
+      dartName: 'Employee',
+      schema: 'public',
+      module: 'new_serverpod',
+      columns: [
+        _isp.ColumnDefinition(
+          name: 'id',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int?',
+          columnDefault: 'serial',
         ),
         _isp.ColumnDefinition(
           name: 'name',
@@ -89,11 +115,17 @@ class Protocol extends _is.DatabaseSerializationManager {
     if (t == _i6pnc270.Company) {
       return _i6pnc270.Company.fromJson(data) as T;
     }
+    if (t == _ito2n1o6.Employee) {
+      return _ito2n1o6.Employee.fromJson(data) as T;
+    }
     if (t == _izw8z7ou.Greeting) {
       return _izw8z7ou.Greeting.fromJson(data) as T;
     }
     if (t == _is.getType<_i6pnc270.Company?>()) {
       return (data != null ? _i6pnc270.Company.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_ito2n1o6.Employee?>()) {
+      return (data != null ? _ito2n1o6.Employee.fromJson(data) : null) as T;
     }
     if (t == _is.getType<_izw8z7ou.Greeting?>()) {
       return (data != null ? _izw8z7ou.Greeting.fromJson(data) : null) as T;
@@ -113,6 +145,7 @@ class Protocol extends _is.DatabaseSerializationManager {
   static String? getClassNameForType(Type type) {
     return switch (type) {
       _i6pnc270.Company => 'Company',
+      _ito2n1o6.Employee => 'Employee',
       _izw8z7ou.Greeting => 'Greeting',
       _ => null,
     };
@@ -133,6 +166,8 @@ class Protocol extends _is.DatabaseSerializationManager {
     switch (data) {
       case _i6pnc270.Company():
         return 'Company';
+      case _ito2n1o6.Employee():
+        return 'Employee';
       case _izw8z7ou.Greeting():
         return 'Greeting';
     }
@@ -163,6 +198,9 @@ class Protocol extends _is.DatabaseSerializationManager {
     }
     if (dataClassName == 'Company') {
       return deserialize<_i6pnc270.Company>(data['data']);
+    }
+    if (dataClassName == 'Employee') {
+      return deserialize<_ito2n1o6.Employee>(data['data']);
     }
     if (dataClassName == 'Greeting') {
       return deserialize<_izw8z7ou.Greeting>(data['data']);
@@ -210,6 +248,8 @@ class Protocol extends _is.DatabaseSerializationManager {
     switch (t) {
       case _i6pnc270.Company:
         return _i6pnc270.Company.t;
+      case _ito2n1o6.Employee:
+        return _ito2n1o6.Employee.t;
     }
     return null;
   }

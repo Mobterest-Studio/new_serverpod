@@ -1,0 +1,4 @@
+class: Employee
+table: employee
+fields:
+  name: String

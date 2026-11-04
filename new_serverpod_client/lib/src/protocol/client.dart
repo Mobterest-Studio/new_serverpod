@@ -246,6 +246,29 @@ class EndpointJwtRefresh extends _iacc.EndpointRefreshJwtTokens {
       );
 }
 
+/// {@category Endpoint}
+class EndpointDashboard extends _isc.EndpointRef {
+  EndpointDashboard(_isc.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'dashboard';
+
+  /// Up to 5000 rows of [table] as JSON: `{"rows": [...], "more": true}`
+  /// when there are more, or `{"error": "..."}`. Outside development, [key]
+  /// must match the `dashboardKey` password.
+  _ida.Future<String> rows(
+    String key,
+    String table,
+  ) => caller.callServerEndpoint<String>(
+    'dashboard',
+    'rows',
+    {
+      'key': key,
+      'table': table,
+    },
+  );
+}
+
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
 /// {@category Endpoint}
@@ -304,6 +327,7 @@ class Client extends _isc.ServerpodClientShared {
        ) {
     emailIdp = EndpointEmailIdp(this);
     jwtRefresh = EndpointJwtRefresh(this);
+    dashboard = EndpointDashboard(this);
     greeting = EndpointGreeting(this);
     modules = Modules(this);
   }
@@ -311,6 +335,8 @@ class Client extends _isc.ServerpodClientShared {
   late final EndpointEmailIdp emailIdp;
 
   late final EndpointJwtRefresh jwtRefresh;
+
+  late final EndpointDashboard dashboard;
 
   late final EndpointGreeting greeting;
 
@@ -320,6 +346,7 @@ class Client extends _isc.ServerpodClientShared {
   Map<String, _isc.EndpointRef> get endpointRefLookup => {
     'emailIdp': emailIdp,
     'jwtRefresh': jwtRefresh,
+    'dashboard': dashboard,
     'greeting': greeting,
   };
 

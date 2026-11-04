@@ -17,8 +17,10 @@ import 'package:serverpod_auth_idp_client/serverpod_auth_idp_client.dart'
     as _iaic;
 import 'package:serverpod_client/serverpod_client.dart' as _isc;
 import 'company.dart' as _i6pnc270;
+import 'employee.dart' as _ito2n1o6;
 import 'greetings/greeting.dart' as _izw8z7ou;
 export 'company.dart';
+export 'employee.dart';
 export 'greetings/greeting.dart';
 export 'client.dart';
 
@@ -59,11 +61,17 @@ class Protocol extends _isc.SerializationManager {
     if (t == _i6pnc270.Company) {
       return _i6pnc270.Company.fromJson(data) as T;
     }
+    if (t == _ito2n1o6.Employee) {
+      return _ito2n1o6.Employee.fromJson(data) as T;
+    }
     if (t == _izw8z7ou.Greeting) {
       return _izw8z7ou.Greeting.fromJson(data) as T;
     }
     if (t == _isc.getType<_i6pnc270.Company?>()) {
       return (data != null ? _i6pnc270.Company.fromJson(data) : null) as T;
+    }
+    if (t == _isc.getType<_ito2n1o6.Employee?>()) {
+      return (data != null ? _ito2n1o6.Employee.fromJson(data) : null) as T;
     }
     if (t == _isc.getType<_izw8z7ou.Greeting?>()) {
       return (data != null ? _izw8z7ou.Greeting.fromJson(data) : null) as T;
@@ -80,6 +88,7 @@ class Protocol extends _isc.SerializationManager {
   static String? getClassNameForType(Type type) {
     return switch (type) {
       _i6pnc270.Company => 'Company',
+      _ito2n1o6.Employee => 'Employee',
       _izw8z7ou.Greeting => 'Greeting',
       _ => null,
     };
@@ -100,6 +109,8 @@ class Protocol extends _isc.SerializationManager {
     switch (data) {
       case _i6pnc270.Company():
         return 'Company';
+      case _ito2n1o6.Employee():
+        return 'Employee';
       case _izw8z7ou.Greeting():
         return 'Greeting';
     }
@@ -126,6 +137,9 @@ class Protocol extends _isc.SerializationManager {
     }
     if (dataClassName == 'Company') {
       return deserialize<_i6pnc270.Company>(data['data']);
+    }
+    if (dataClassName == 'Employee') {
+      return deserialize<_ito2n1o6.Employee>(data['data']);
     }
     if (dataClassName == 'Greeting') {
       return deserialize<_izw8z7ou.Greeting>(data['data']);
